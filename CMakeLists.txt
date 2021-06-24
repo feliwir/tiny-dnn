@@ -419,6 +419,9 @@ if(BUILD_EXAMPLES)
 endif(BUILD_EXAMPLES)
 
 if(BUILD_TESTS)
+    set(INSTALL_GTEST OFF)
+    set(BUILD_GMOCK OFF)
+    add_subdirectory(third_party/googletest)
     add_subdirectory(test)
 endif(BUILD_TESTS)
 
@@ -427,6 +430,9 @@ if(BUILD_DOCS)
 endif(BUILD_DOCS)
 
 if(BUILD_BENCHMARKS)
+    set(BENCHMARK_ENABLE_TESTING OFF)
+    set(BENCHMARK_ENABLE_INSTALL OFF)
+    add_subdirectory(third_party/benchmark)
     add_subdirectory(benchmarks)
 endif(BUILD_BENCHMARKS)
 

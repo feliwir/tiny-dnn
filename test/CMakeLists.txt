@@ -5,18 +5,17 @@ add_executable(print_device print_device.cpp)
 target_link_libraries(print_device
     ${project_library_target_name} ${REQUIRED_LIBRARIES})
 
-add_executable(tiny_dnn_test test.cpp test_main.cpp)
+add_executable(tiny_dnn_test test.cpp)
 
 set_target_properties(tiny_dnn_test PROPERTIES LINKER_LANGUAGE CXX)
 
 target_link_libraries(tiny_dnn_test
     ${project_library_target_name} ${REQUIRED_LIBRARIES})
 
+target_link_libraries(tiny_dnn_test gtest gtest_main)
 
-add_test(all_tests tiny_dnn_test)
-# workaround for https://gitlab.kitware.com/cmake/cmake/issues/8774
-add_custom_target(run_tests COMMAND ${CMAKE_CTEST_COMMAND}
-    DEPENDS tiny_dnn_test)
+include(GoogleTest)
+gtest_discover_tests(tiny_dnn_test)
 
 if(COVERALLS)
     message(STATUS "Code coverage: Enabled")
@@ -44,5 +43,3 @@ endif()
 
 ### Clang-tidy check
 include(../cmake/clang-cxx-dev-tools.cmake)
-
-cotire(print_device tiny_dnn_test)
