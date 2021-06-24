@@ -110,6 +110,8 @@ endif()
 
 if(NOT USE_SERIALIZER)
     add_definitions(-DCNN_NO_SERIALIZATION)
+else()
+    include_directories(SYSTEM ${PROJECT_SOURCE_DIR}/third_party/cereal/include)
 endif()
 
 if(USE_DOUBLE)
