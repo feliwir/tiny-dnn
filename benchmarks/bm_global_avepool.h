@@ -51,10 +51,10 @@ void bm_global_avepool_forward_avx(benchmark::State& state) {
 #endif
 
 // Register the function as a benchmarks
-BENCHMARK(bm_global_avepool_forward_internal)->Repetitions(1000);
+BENCHMARK(bm_global_avepool_forward_internal);
 
 #ifdef CNN_USE_AVX
-BENCHMARK(bm_global_avepool_forward_avx)->Repetitions(1000);
+BENCHMARK(bm_global_avepool_forward_avx);
 #endif
 
 }  // namespace benchmarks
